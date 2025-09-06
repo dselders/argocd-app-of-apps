@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cloudnativepg
+  name: kind-cnpg
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io/background
