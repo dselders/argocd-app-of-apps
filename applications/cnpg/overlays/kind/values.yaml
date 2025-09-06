@@ -1,12 +1,12 @@
 ---
-replicatCount: 1
+replicaCount: 1
 resources:
   limits:
     cpu: 200m
-    memory: 256mi
+    memory: 256Mi
   requests:
     cpu: 100m
-    memory: 128mi
+    memory: 128Mi
 config:
   data:
     INHERITED_ANNOTATIONS: "nip.io/*"
