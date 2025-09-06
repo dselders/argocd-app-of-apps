@@ -1,0 +1,21 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudnative-pg-operator
+  namespace: argocd
+spec:
+  source:
+    helm:
+      valueFiles:
+        - $values/applications/cloudnative-pg/overlays/kind/values.yaml
+  sources:
+    - repoURL: https://cloudnative-pg.github.io/charts
+      chart: cloudnative-pg
+      targetRevision: 0.21.6
+      helm:
+        valueFiles:
+          - $values/applications/cloudnative-pg/overlays/kind/values.yaml
+    - repoURL: https://github.com/dselders/argocd-app-of-apps.git
+      targetRevision: main
+      ref: values

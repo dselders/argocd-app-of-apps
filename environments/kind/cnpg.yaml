@@ -2,19 +2,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cnpg
+  name: cloudnativepg
   namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
   finalizers:
     - resources-finalizer.argocd.argoproj.io/background
     - resources-finalizer.argocd.argoproj.io/foreground
 spec:
   project: default
   source:
-    repoURL: https://cloudnative-pg.github.io/charts
-    chart: cloudnative-pg
-    targetRevision: 0.26.0
+    repoURL: https://github.com/dselders/argocd-app-of-apps.git
+    targetRevision: main
+    path: applications/cnpg/overlays/kind
   destination:
     server: https://kubernetes.default.svc
     namespace: cnpg-system
@@ -24,4 +22,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true

@@ -1,0 +1,24 @@
+---
+replicatCount: 1
+resources:
+  limits:
+    cpu: 200m
+    memory: 256mi
+  requests:
+    cpu: 100m
+    memory: 128mi
+config:
+  data:
+    INHERITED_ANNOTATIONS: "nip.io/*"
+    INHERITED_LABELS: "environment,cluster"
+monitoring:
+  enabled: false
+webhook:
+  port: 9443
+  mutatingWebhook:
+    create: true
+  validatingWebhook:
+    create: true
+image:
+  repository: ghcr.io/cloudnative-pg/cloudnative-pg
+  pullPolicy: IfNotPresent

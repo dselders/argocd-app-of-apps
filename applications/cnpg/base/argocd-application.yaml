@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-secrets-operator
+  name: cnpg
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "0"
@@ -11,23 +11,17 @@ metadata:
     - resources-finalizer.argocd.argoproj.io/foreground
 spec:
   project: default
-  sources:
-    - repoURL: https://charts.external-secrets.io/
-      chart: external-secrets
-      targetRevision: 0.19.2
-    - repoURL: https://github.com/dselders/argocd-app-of-apps.git
-      targetRevision: main
-      path: manifests/external-secrets
+  source:
+    repoURL: https://cloudnative-pg.github.io/charts
+    chart: cloudnative-pg
+    targetRevision: 0.26.6
   destination:
     server: https://kubernetes.default.svc
-    namespace: external-secrets
+    namespace: cnpg-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    managedNamespaceMetadata:
-      labels:
-        app: external-secrets-operator
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true

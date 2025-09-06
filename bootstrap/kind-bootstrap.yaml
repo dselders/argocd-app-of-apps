@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/dselders/argocd-app-of-apps.git
     targetRevision: main
-    path: apps
+    path: environments/kind
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
