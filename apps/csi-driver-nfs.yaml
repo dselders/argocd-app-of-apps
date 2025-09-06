@@ -1,0 +1,33 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: csi-driver-nfs
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/background
+    - resources-finalizer.argocd.argoproj.io/foreground
+spec:
+  project: default
+  sources:
+    - repoURL: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+      chart: csi-driver-nfs
+      targetRevision: 4.11.0
+      helm:
+        valuesFiles:
+          - $values/charts/csi-driver-nfs/values.yaml
+    - repoUrl: https://github.com/dselders/argocd-app-of-apps.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: csi-driver-nfs
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
