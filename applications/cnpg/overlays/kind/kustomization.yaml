@@ -4,7 +4,10 @@ kind: Kustomization
 resources:
   - ../../base
 patches:
-  - application-patch.yaml
+  - path: application-patch.yaml
+    target:
+      kind: Application
+      name: cloudnative-pg-operator
 configMapGenerator:
   - name: cnpg-kind-values
     files:
