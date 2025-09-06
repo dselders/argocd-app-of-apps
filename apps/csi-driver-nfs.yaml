@@ -16,7 +16,7 @@ spec:
       chart: csi-driver-nfs
       targetRevision: 4.11.0
       helm:
-        valuesFiles:
+        valueFiles:
           - $values/charts/csi-driver-nfs/values.yaml
     - repoUrl: https://github.com/dselders/argocd-app-of-apps.git
       targetRevision: main
