@@ -18,7 +18,7 @@ spec:
       helm:
         valueFiles:
           - $values/charts/csi-driver-nfs/values.yaml
-    - repoUrl: https://github.com/dselders/argocd-app-of-apps.git
+    - repoURL: https://github.com/dselders/argocd-app-of-apps.git
       targetRevision: main
       ref: values
   destination:
