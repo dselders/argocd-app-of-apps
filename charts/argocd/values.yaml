@@ -1,0 +1,10 @@
+---
+configs:
+  params:
+    server.insecure: true
+global:
+  domain: argocd.127-0-0-1.nip.io
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
